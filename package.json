@@ -11,7 +11,7 @@
     "start": "node server/server.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",
