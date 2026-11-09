@@ -2579,7 +2579,7 @@ if (fs.existsSync(path.join(DIST_DIR, "index.html"))) {
 ====================================================== */
 
 // Warm the same cache used by scope options and descriptive aggregates.
-await analyticsCache.get().catch(error => console.error("Analytics startup:", error.message));
+analyticsCache.get().catch(error => console.error("Analytics startup:", error.message));
 
 app.listen(
     PORT,
