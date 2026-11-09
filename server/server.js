@@ -9,6 +9,7 @@ import path from "path";
 import crypto from "crypto";
 import { fileURLToPath } from "url";
 import { createClient } from "@supabase/supabase-js";
+import WebSocket from "ws";
 import { createAnalyticsCache, analyzeRows } from "./analytics.js";
 import { predictiveAnalytics, prescriptiveAnalytics } from "./forecasting.js";
 import { startEtlRun, completeEtlRun, failEtlRun } from "./etlRun.js";
@@ -136,7 +137,11 @@ if (
     supabase =
         createClient(
             SUPABASE_URL,
-            SUPABASE_SECRET_KEY
+            SUPABASE_SECRET_KEY,
+            {
+                // Node 20 has no native WebSocket; supply one so the client starts on any Node version.
+                realtime: { transport: WebSocket }
+            }
         );
 
     console.log(
